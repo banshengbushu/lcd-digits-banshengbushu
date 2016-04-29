@@ -1,43 +1,47 @@
 describe('lcd-digits', function () {
     var input;
-    var LCDTotalDigits;
+    input = 613;
 
-    beforeEach(function () {
-        input = 613;
-        LCDTotalDigits = loadLCDTotalDigits();
-    });
-
-    describle('buildLCDArray', function () {
-
-        it('should print correct text', function () {
-            var LCDArray = [6, 1, 3];
-            expect(buildLCDArray(input)).toEqual(LCDArray);
-        });
-    });
-
-    describle('showLCDDigits', function () {
-        it('should print correct text', function () {
-            var expectDigits = ['._. ... ._.',
-                                '|_. ..| ._|',
-                                '|_| ..| ._|'];
-            expect(showLC0DDigits(LCDArray, LCDTotalDigits)).toEqual(expectDigits);
-        });
-
-    });
-
-    describle('should print correct text', function () {
+    describe('intergration testing', function () {
 
         it('should print correct text', function () {
             spyOn(console, 'log');
 
             printLCDDigits(input);
 
-            var print =
-                '._.' + '...' + '._.' + '\n' +
-                '|_.' + '..|' + '._|' + '\n' +
-                '|_|' + '..|' + '._|';
+            var expectText = '\n' + '._. ... ._. ' +
+                             '\n' + '|_. ..| ._| ' +
+                             '\n' + '|_| ..| ._| ';
 
-            expect(console.log).toHavaBeenCalledWith(print);
+            expect(console.log).toHaveBeenCalledWith(expectText);
+        });
+    });
+
+    describe('unit testing', function () {
+
+        describe('test buildLCDArray', function () {
+            var input;
+            input = 613;
+
+            it('Return correct LCDArray', function () {
+                var LCDArray = ['6', '1', '3'];
+
+                expect(buildLCDArray(input)).toEqual(LCDArray);
+            });
+        });
+
+        describe('test showLCDDigits', function () {
+            var LCDArray = ['6', '1', '3'];
+            var LCDTotalDigits = loadLCDTotalDigits();
+
+            it('Return correct expectDigits', function () {
+
+                expectDigits = '\n' + '._. ... ._. ' +
+                               '\n' + '|_. ..| ._| ' +
+                               '\n' + '|_| ..| ._| ';
+
+                expect(showLCDDigits(LCDArray, LCDTotalDigits)).toEqual(expectDigits);
+            });
         });
     });
 });
