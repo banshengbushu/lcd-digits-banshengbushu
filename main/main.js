@@ -7,17 +7,18 @@ function printLCDDigits(input) {
 
 function buildLCDArray(input) {
 
-    return parseInt(input.toString().split(''));
+    return input.toString().split('');
 }
 
-function showLCDDigits(LCDArray,LCDTotalDigits) {
-  
+function showLCDDigits(LCDArray, LCDTotalDigits) {
+    var expectDigits = '';
     for (var i = 0; i < LCDArray.length; i++) {
-		var expectDigits = [];
-			expectDigits[i] = LCDTotalDigits[i][LCDArray[0]]+ ' '+
-							  LCDTotalDigits[i][LCDArray[1]] + ' ' +
-						      LCDTotalDigits[i][LCDArray[2]];
-		}
-	
+
+        expectDigits += '\n' + LCDTotalDigits[i][LCDArray[0]] +
+                               LCDTotalDigits[i][LCDArray[1]] +
+                               LCDTotalDigits[i][LCDArray[2]];
+
+    }
+
     return expectDigits;
 }
