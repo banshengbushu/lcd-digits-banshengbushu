@@ -30,17 +30,19 @@ describe('lcd-digits', function () {
             });
         });
 
-        describe('test showLCDDigits', function () {
+        describe('test generateLCDDigits', function () {
             var LCDArray = ['6', '1', '3'];
             var LCDTotalDigits = loadLCDTotalDigits();
 
             it('Return correct expectDigits', function () {
 
-                expectDigits = '\n' + '._. ... ._. ' +
-                               '\n' + '|_. ..| ._| ' +
-                               '\n' + '|_| ..| ._| ';
+                expectDigits = [
+                    {key: "6", value: [["._."], ["|_."], ["|_|"]]},
+                    {key: "1", value: [["..."], ["..|"], ["..|"]]},
+                    {key: "3", value: [["._."], ["._|"], ["._|"]]}
+                ];
 
-                expect(showLCDDigits(LCDArray, LCDTotalDigits)).toEqual(expectDigits);
+                expect(generateLCDDigits(LCDArray, LCDTotalDigits)).toEqual(expectDigits);
             });
         });
     });
